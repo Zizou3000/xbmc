@@ -36,10 +36,5 @@ jobs:
           cd build-android-arm
           ninja
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: kodi-android-apk
-          path: build-android-arm/apk/*.apk
-          # force GitHub to detect workflow
+    
           
