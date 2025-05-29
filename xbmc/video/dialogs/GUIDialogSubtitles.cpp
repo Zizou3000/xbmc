@@ -259,3 +259,4 @@ void CGUIDialogSubtitles::Process(unsigned int currentTime, CDirtyRegionList &di
 }
 
 // (Rest of your original code remains unchanged)
+
