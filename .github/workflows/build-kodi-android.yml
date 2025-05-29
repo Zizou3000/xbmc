@@ -41,3 +41,4 @@ jobs:
         with:
           name: kodi-android-apk
           path: build-android-arm/apk/*.apk
+          # force GitHub to detect workflow
