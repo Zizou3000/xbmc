@@ -1,4 +1,3 @@
-// Modified for subtitle fix
 /* 
  *  Copyright (C) 2005-2018 Team Kodi
  *  This file is part of Kodi - https://kodi.tv
@@ -260,4 +259,3 @@ void CGUIDialogSubtitles::Process(unsigned int currentTime, CDirtyRegionList &di
 }
 
 // (Rest of your original code remains unchanged)
-
