@@ -18,7 +18,7 @@ jobs:
         run: |
           cd tools/depends
           ./bootstrap
-          make -C target/xbmc-depends PREFIX=$(pwd)/../../prefix
+          make -C target/xbmc PREFIX=$(pwd)/../../prefix
 
       - name: Configure build
         run: |
