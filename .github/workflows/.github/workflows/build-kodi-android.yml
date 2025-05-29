@@ -1,0 +1,43 @@
+name: Kodi Android Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y default-jdk zip unzip git cmake ninja-build python3
+
+      - name: Init Kodi depends
+        run: |
+          cd tools/depends
+          ./bootstrap
+          make -C target/xbmc-depends PREFIX=$(pwd)/../../prefix
+
+      - name: Configure build
+        run: |
+          mkdir -p ../build-android-arm
+          cd ../build-android-arm
+          cmake -G Ninja ../ \
+            -DCMAKE_TOOLCHAIN_FILE=../tools/depends/target-platform/android/Toolchain.cmake \
+            -DANDROID_ABI=armeabi-v7a \
+            -DANDROID_PLATFORM=android-21 \
+            -DAPP_RENDER_SYSTEM=gles \
+            -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Kodi
+        run: |
+          cd build-android-arm
+          ninja
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: kodi-android-apk
+          path: build-android-arm/apk/*.apk
