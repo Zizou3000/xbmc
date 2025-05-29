@@ -14,12 +14,12 @@ jobs:
           sudo apt update
           sudo apt install -y default-jdk zip unzip git cmake ninja-build python3
 
-      - name: Init Kodi depends
-        run: |
-          cd tools/depends
-          ./bootstrap
-          make -C target/xbmc PREFIX=$(pwd)/../../prefix
-
+      - name: Init Kodi Android depends
+  run: |
+    cd tools/depends
+    ./bootstrap
+    ./configure
+    
       - name: Configure build
         run: |
           mkdir -p ../build-android-arm
